@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  frontend:
+    container_name: "HubFrontend"
+    build:
+      context: ./frontend
+      dockerfile: DockerFile.dockerfile
+    working_dir: /frontend
+    volumes:
+    - ./frontend/src:/frontend/src
+    ports:
+    - 3000:3000
+  backend:
+    container_name: "HubBackend"
+    build:
+      context: ./backend
+      dockerfile: DockerFile.dockerfile
+    working_dir: /backend
+    volumes:
+    - ./backend/src/:/backend/src/
+    ports:
+    - 3300:3300

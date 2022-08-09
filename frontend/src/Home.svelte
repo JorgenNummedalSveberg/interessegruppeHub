@@ -354,7 +354,8 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         flex-direction: row;
         align-items: flex-start;
         font-family: Garamond, Arial,serif;
-        background: no-repeat;
+        background-size: cover;
+
     }
 
     .campaignForm {

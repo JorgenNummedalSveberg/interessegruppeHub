@@ -22,7 +22,7 @@
 	<Router>
 		<nav class="navbar">
 			<div class="navItem">
-				<Link to="/"><img class="logo" src="questline2.webp" alt="img not found"/></Link>
+				<Link to="/"><img class="logo" src="questline-logo.webp" alt="img not found"/></Link>
 			</div>
 			<div class="navItem rightDivider">
 				<Link to="/">Home</Link>

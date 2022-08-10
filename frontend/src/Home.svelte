@@ -1,17 +1,10 @@
 <script>
-import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
+    import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
     import { form, field } from 'svelte-forms';
     import { required } from 'svelte-forms/validators';
-
-    // Import the functions you need from the SDKs you need
     import { initializeApp } from "firebase/app";
     import { getAnalytics } from "firebase/analytics";
-    import { getDatabase, ref, onValue, child, get, push } from "firebase/database";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    import { getDatabase, ref, onValue, push, set, get, remove } from "firebase/database";
     const firebaseConfig = {
         apiKey: "AIzaSyAibYt3NYopvfkhgHoJnYqGwLW-WaUjkoo",
         authDomain: "questmatch-86f27.firebaseapp.com",
@@ -23,52 +16,62 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         measurementId: "G-WF1BDT5448"
     };
 
+    class Game {
+
+        constructor(game) {
+            this.gameID = game[0];
+            Object.keys(game[1]).forEach(x => {
+                this[x] = game[1][x];
+            })
+        }
+
+    }
+
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const database = getDatabase();
 
-    // function postGame() {
-    //     set(dbRef, {
-    //         username: name,
-    //         email: email,
-    //         profile_picture: imageUrl
-    //     });
-    // }
-
-    let upcoming = undefined;
-    let ongoing = undefined;
-    let completed = undefined;
-
-
-    const dbRef = ref(database);
-    onValue(dbRef, (snapshot) => {
+    let upcoming = [];
+    const upcomingRef = ref(database, 'games/upcoming/');
+    onValue(upcomingRef, (snapshot) => {
         if (snapshot.exists()) {
-            let games = snapshot.val().games;
-            upcoming = Object.values(games.upcoming).reverse();
-            ongoing = Object.values(games.ongoing).reverse();
-            completed = Object.values(games.completed).reverse();
-            console.log(upcoming);
+            let games = snapshot.val();
+            upcoming = games ? Object.entries(games).map((key, object) => new Game(key, object))
+                .sort((a, b) => Date.parse(b.created) - Date.parse(a.created)) : [];
+            console.dir(games)
+            console.dir(upcoming)
         } else {
-            console.log("No data available");
+            upcoming = [];
+            console.log("No upcoming games");
         }
     });
 
-    function getGames() {
-        get(child(dbRef, `games/`)).then((snapshot) => {
-            if (snapshot.exists()) {
-                let games = snapshot.val().games;
-                upcoming = Object.values(games.upcoming);
-                ongoing = Object.values(games.ongoing);
-                completed = Object.values(games.completed);
-                console.log(upcoming);
-            } else {
-                console.log("No data available");
-            }
-        }).catch((error) => {
-            console.error(error);
-        });
-    }
+    let ongoing = [];
+    const ongoingRef = ref(database, 'games/ongoing/');
+    onValue(ongoingRef, (snapshot) => {
+        if (snapshot.exists()) {
+            let games = snapshot.val();
+            ongoing = games ? Object.entries(games).map((key, object) => new Game(key, object))
+                .sort((a, b) => Date.parse(b.started) - Date.parse(a.started)) : [];
+        } else {
+            ongoing = [];
+            console.log("No ongoing games");
+        }
+    });
+
+    let completed = [];
+    const completedRef = ref(database, 'games/completed/');
+    onValue(completedRef, (snapshot) => {
+        if (snapshot.exists()) {
+            let games = snapshot.val();
+            completed = games ? Object.entries(games).map((key, object) => new Game(key, object))
+                .sort((a, b) => Date.parse(b.ended) - Date.parse(a.ended)) : [];
+        } else {
+            completed = [];
+            console.log("No completed games");
+        }
+    });
 
     const title = field('title', '', [required()]);
     const language = field('language', '', [required()]);
@@ -76,8 +79,6 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
     const maxPlayers = field('maxPlayers', '', [required()]);
     const description = field('description', '', [required()]);
     const myForm = form(title, language, ruleset, maxPlayers, description);
-
-
 
     function waitForAuthority() {
         if ($isAuthenticated) {
@@ -87,20 +88,8 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         }
     }
 
-    function removeGame(gameID) {
-        let body = {
-            'userID': $userInfo.sub,
-            'gameID': gameID
-        }
-        const req = {
-            method: 'DELETE',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body)
-        }
-        fetch("http://localhost:3300/games", req).then(_ => getGames());
+    function removeGame(gameID, path) {
+        remove(ref(database, `games/${path}/${gameID}`))
     }
 
     function addGame() {
@@ -109,64 +98,38 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
 
         let game = {...myForm.summary(), ...{
             'owner': $userInfo.name,
-            'ownerID': $userInfo.sub
+            'ownerID': $userInfo.sub,
+            'created': new Date().toUTCString(),
         }}
-        console.log(game);
         push(ref(database, 'games/upcoming'), game)
     }
 
     function startGame(gameID) {
-        let game = {
-            'userID': $userInfo.sub,
-            'gameID': gameID
-        }
-
-        const req = {
-            method: 'PATCH',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(game)
-        }
-        fetch("http://localhost:3300/games/start", req).then(_ => getGames());
+        get(ref(database, `games/upcoming/${gameID}`)).then(result => {
+            let game = result.val();
+            game.started = new Date().toUTCString()
+            set(ref(database, `games/ongoing/${gameID}`), game).then(() => {
+                removeGame(gameID, 'upcoming')
+            }).catch(() => {
+                console.log('Game could not be started')
+            })
+        })
     }
 
     function endGame(gameID) {
-        let game = {
-            'userID': $userInfo.sub,
-            'gameID': gameID
-        }
-
-        const req = {
-            method: 'PATCH',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(game)
-        }
-        fetch("http://localhost:3300/games/end", req).then(res => {
-            getGames()
-            res.json().then(json => console.log(json))
-        });
+        get(ref(database, `games/ongoing/${gameID}`)).then(result => {
+            let game = result.val();
+            game.ended = new Date().toUTCString()
+            set(ref(database, `games/completed/${gameID}`), game).then(() => {
+                removeGame(gameID, 'ongoing')
+            }).catch(() => {
+                console.log('Game could not be started')
+            })
+        })
     }
 
     function joinGame(gameID) {
-        let body = {
-            'user': $userInfo.name,
-            'userID': $userInfo.sub,
-            'gameID': gameID
-        }
-        const req = {
-            method: 'PUT',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body)
-        }
-        fetch("http://localhost:3300/games", req).then(_ => getGames());
+        push(ref(database, `games/database/${gameID}/players/`), {user: $userInfo.name, userID: $userInfo.sub})
     }
 
     function isOwner(ownerID) {
@@ -181,7 +144,7 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
 
 
 </script>
-<main style="background-image: url('dnd background.jpg')">
+<main style="background-image: url('background.jpg')">
     <div class="quest-lists">
         <div class="quest-list">
             <div class="board-sign">Upcoming campaigns</div>
@@ -196,7 +159,7 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                 <div>
                                     <div>Players{`(max ${game.maxPlayers})`}:</div>
                                     <div>{game.players ? game.players.join(', ') : ''}</div>
-                                </div> : ''
+                                </div>
                                 <div class="description">Description: {game.description}</div>
                                 <div class="game-master">Game master: {game.owner}</div>
                             </div>
@@ -205,7 +168,7 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                     <button on:click={_ => joinGame(game.gameID)}>Join</button>
                                 {/if}
                                 {#if $isAuthenticated && isOwner(game.ownerID)}
-                                    <button on:click={_ => removeGame(game.gameID)}>Remove</button>
+                                    <button on:click={_ => removeGame(game.gameID, 'upcoming')}>Remove</button>
                                     <button on:click={_ => startGame(game.gameID)}>Start</button>
                                 {/if}
                             </div>
@@ -236,7 +199,7 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                     <button on:click={_ => joinGame(game.gameID)}>Join</button>
                                 {/if}
                                 {#if $isAuthenticated && isOwner(game.ownerID)}
-                                    <button on:click={_ => removeGame(game.gameID)}>Remove</button>
+                                    <button on:click={_ => removeGame(game.gameID, 'ongoing')}>Remove</button>
                                     <button on:click={_ => endGame(game.gameID)}>End</button>
                                 {/if}
                             </div>
@@ -263,10 +226,10 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                 <div class="game-master">Game master: {game.owner}</div>
                             </div>
                             <div class="quest-buttons">
-                                <button disabled >Join</button>
-                                {#if $isAuthenticated && isOwner(game.ownerID)}
-                                    <button on:click={_ => removeGame(game.gameID)}>Remove</button>
-                                {/if}
+<!--                                <button disabled >Join</button>-->
+<!--                                {#if $isAuthenticated && isOwner(game.ownerID)}-->
+<!--                                    <button on:click={_ => removeGame(game.gameID, 'completed')}>Remove</button>-->
+<!--                                {/if}-->
                             </div>
                         </div>
                     {/each}

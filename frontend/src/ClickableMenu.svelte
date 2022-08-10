@@ -21,7 +21,7 @@
 
 </script>
 <div style="--hide-prop: {hide}; --height-prop: {height}; --width-prop: {width}"  class="flex">
-    <img on:mouseenter={_ => overImage = true} on:mouseleave={_ => overImage = false} class="profileImage" src="profile.png"  alt="img not found"/>
+    <img on:mouseenter={_ => overImage = true} on:mouseleave={_ => overImage = false} class="profileImage" src="profile-icon.png"  alt="img not found"/>
     <div on:mouseenter={_ => overMenu = true} on:mouseleave={_ => overMenu = false} class="clickableMenu">
         <slot class="hiddenItems"/>
     </div>

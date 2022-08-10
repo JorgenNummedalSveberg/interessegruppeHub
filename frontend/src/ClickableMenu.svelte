@@ -7,10 +7,6 @@
 
     let hide = "hidden";
 
-    setInterval(() => {
-        console.log(overImage + ":" +overMenu)
-    }, 100)
-
     window.addEventListener("click", () => {
         if (overImage) {
             showHide();

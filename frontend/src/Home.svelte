@@ -3,6 +3,73 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
     import { form, field } from 'svelte-forms';
     import { required } from 'svelte-forms/validators';
 
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "firebase/app";
+    import { getAnalytics } from "firebase/analytics";
+    import { getDatabase, ref, onValue, child, get, push } from "firebase/database";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyAibYt3NYopvfkhgHoJnYqGwLW-WaUjkoo",
+        authDomain: "questmatch-86f27.firebaseapp.com",
+        databaseURL: "https://questmatch-86f27-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "questmatch-86f27",
+        storageBucket: "questmatch-86f27.appspot.com",
+        messagingSenderId: "200833047382",
+        appId: "1:200833047382:web:6ccc671ed10031b79a54f7",
+        measurementId: "G-WF1BDT5448"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const database = getDatabase();
+
+    // function postGame() {
+    //     set(dbRef, {
+    //         username: name,
+    //         email: email,
+    //         profile_picture: imageUrl
+    //     });
+    // }
+
+    let upcoming = undefined;
+    let ongoing = undefined;
+    let completed = undefined;
+
+
+    const dbRef = ref(database);
+    onValue(dbRef, (snapshot) => {
+        if (snapshot.exists()) {
+            let games = snapshot.val().games;
+            upcoming = Object.values(games.upcoming).reverse();
+            ongoing = Object.values(games.ongoing).reverse();
+            completed = Object.values(games.completed).reverse();
+            console.log(upcoming);
+        } else {
+            console.log("No data available");
+        }
+    });
+
+    function getGames() {
+        get(child(dbRef, `games/`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                let games = snapshot.val().games;
+                upcoming = Object.values(games.upcoming);
+                ongoing = Object.values(games.ongoing);
+                completed = Object.values(games.completed);
+                console.log(upcoming);
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+    }
+
     const title = field('title', '', [required()]);
     const language = field('language', '', [required()]);
     const ruleset = field('ruleset', '', [required()]);
@@ -10,7 +77,6 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
     const description = field('description', '', [required()]);
     const myForm = form(title, language, ruleset, maxPlayers, description);
 
-    let games = undefined;
 
 
     function waitForAuthority() {
@@ -19,12 +85,6 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         } else {
 
         }
-    }
-
-    function getGames() {
-        fetch("http://localhost:3300/games").then(res => res.json().then(json => {
-            games = json;
-        }))
     }
 
     function removeGame(gameID) {
@@ -44,21 +104,15 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
     }
 
     function addGame() {
+
         if (!validateForm()) return;
 
         let game = {...myForm.summary(), ...{
             'owner': $userInfo.name,
             'ownerID': $userInfo.sub
         }}
-        const req = {
-            method: 'POST',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(game)
-        }
-        fetch("http://localhost:3300/games", req).then(_ => getGames());
+        console.log(game);
+        push(ref(database, 'games/upcoming'), game)
     }
 
     function startGame(gameID) {
@@ -125,23 +179,15 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         return formValid;
     }
 
-    getGames();
 
-    // const req = {
-    //     method: 'GET',
-    //     headers: {
-    //         'Authorization': 'Bearer ' + $accessToken,
-    //         'Accept': 'application/json'
-    //     }
-    // }
 </script>
 <main style="background-image: url('dnd background.jpg')">
     <div class="quest-lists">
         <div class="quest-list">
             <div class="board-sign">Upcoming campaigns</div>
             <div class="quests">
-                {#if games !== undefined}
-                    {#each games["upcoming"] as game}
+                {#if upcoming !== undefined}
+                    {#each upcoming as game}
                         <div class="quest">
                             <div class="title">{game.title}</div>
                             <div class="content">
@@ -149,8 +195,8 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                 <div>Language(s): {game.language}</div>
                                 <div>
                                     <div>Players{`(max ${game.maxPlayers})`}:</div>
-                                    <div>{game.players.join(', ')}</div>
-                                </div>
+                                    <div>{game.players ? game.players.join(', ') : ''}</div>
+                                </div> : ''
                                 <div class="description">Description: {game.description}</div>
                                 <div class="game-master">Game master: {game.owner}</div>
                             </div>
@@ -171,8 +217,8 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         <div class="quest-list">
             <div class="board-sign">Ongoing campaigns</div>
             <div class="quests">
-                {#if games !== undefined}
-                    {#each games["ongoing"] as game}
+                {#if ongoing !== undefined}
+                    {#each ongoing as game}
                         <div class="quest">
                             <div class="title">{game.title}</div>
                             <div class="content">
@@ -180,7 +226,7 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                 <div>Language(s): {game.language}</div>
                                 <div>
                                     <div>Players{`(max ${game.maxPlayers})`}:</div>
-                                    <div>{game.players.join(', ')}</div>
+                                    <div>{game.players ? game.players.join(', ') : ''}</div>
                                 </div>
                                 <div class="description">Description: {game.description}</div>
                                 <div class="game-master">Game master: {game.owner}</div>
@@ -202,8 +248,8 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         <div class="quest-list">
             <div class="board-sign">Completed campaigns</div>
             <div class="quests">
-                {#if games !== undefined}
-                    {#each games["completed"] as game}
+                {#if completed !== undefined}
+                    {#each completed as game}
                         <div class="quest">
                             <div class="title">{game.title}</div>
                             <div class="content">
@@ -211,7 +257,7 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                 <div>Ruleset: {game.ruleset}</div>
                                 <div>
                                     <div>Players{`(max ${game.maxPlayers})`}:</div>
-                                    <div>{game.players.join(', ')}</div>
+                                    <div>{game.players ? game.players.join(', ') : ''}</div>
                                 </div>
                                 <div class="description">Description: {game.description}</div>
                                 <div class="game-master">Game master: {game.owner}</div>

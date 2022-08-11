@@ -70,7 +70,7 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		height: 3.5em;
+		height: 60px;
 		/*background-color: #d9d9d9;*/
 		background-image: radial-gradient(#ccc 2%, transparent 0px),
 		radial-gradient(#ccc 2%, transparent 0px),

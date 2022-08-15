@@ -2,7 +2,6 @@
 	import {Router, Route, Link} from "svelte-navigator";
 	import Home from './Home.svelte';
 	import {OidcContext, LoginButton, LogoutButton, userInfo} from '@dopry/svelte-oidc';
-	import {getContext} from "svelte";
 	import Profile from "./Profile.svelte";
 	import BorrowEquipment from "./BorrowEquipment.svelte";
 	import AboutUs from "./AboutUs.svelte";
@@ -14,24 +13,24 @@
 
 <OidcContext
 		issuer="https://old.online.ntnu.no/openid/.well-known/openid-configuration"
-		client_id="421888"
-		redirect_uri="http://localhost:3000/login"
-		post_logout_redirect_uri="http://localhost:3000/login"
+		client_id="444474"
+		redirect_uri="https://questline.web.app/"
+		post_logout_redirect_uri="https://questline.web.app/"
 >
 	<main>
 	<Router>
 		<nav class="navbar">
 			<div class="navItem">
-				<Link to="/"><img class="logo" src="questline-logo.webp" alt="img not found"/></Link>
+				<Link to="/"><img class="logo" src="logo.png" alt="img not found"/></Link>
 			</div>
 			<div class="navItem rightDivider">
-				<Link to="/">Home</Link>
+				<Link to="/">QUESTMATCH</Link>
 			</div>
 			<div class="navItem rightDivider">
-				<Link to="/borrowEquipment">Borrow equipment</Link>
+				<Link to="/borrowEquipment">BORROW EQUIPMENT</Link>
 			</div>
 			<div class="navItem">
-				<Link to="/aboutUs">About us</Link>
+				<Link to="/aboutUs">ABOUT US</Link>
 			</div>
 			<div class="navItem">
 				<ClickableMenu height="150px" width="250px">
@@ -71,17 +70,19 @@
 		flex-direction: row;
 		align-items: center;
 		height: 3.5em;
-		background-color: #d9d9d9;
+		background-color: #0d5474;
 	}
 	:global(a) {
-		color: #000;
+		color: #fff;
 		text-decoration: none;
+		font-family:  "Source Sans Pro", sans-serif;
+		font-size: 13px;
+		padding: 10px;
+		margin: 0 5px;
+		transition: opacity 0.2s;
 	}
 	.navbar > :global(:nth-last-child(1)) {
 		margin-left: auto;
-	}
-	.rightDivider {
-		border-right: solid grey 0.01em;
 	}
 	.navItem {
 		padding-left: 15px;
@@ -97,7 +98,7 @@
 	}
 	.logo {
 		vertical-align: middle;
-		max-height: 2em;
+		max-height: 4em;
 		display:block;
 		margin:auto;
 	}

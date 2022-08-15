@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "questline",
     "public": "public",
     "ignore": [
       "firebase.json",

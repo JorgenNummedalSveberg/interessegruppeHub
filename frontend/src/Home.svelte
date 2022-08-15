@@ -1,5 +1,5 @@
 <script>
-    import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
+import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
     import { form, field } from 'svelte-forms';
     import { required } from 'svelte-forms/validators';
     import { initializeApp } from "firebase/app";
@@ -132,19 +132,30 @@
         push(ref(database, `games/database/${gameID}/players/`), {user: $userInfo.name, userID: $userInfo.sub})
     }
 
+    function leaveGame(gameID) {
+        get(ref(database, `games/database/${gameID}/players/`)).then(res => {
+            let players = res.val();
+            Object.entries(players).forEach((key, object) => {
+                if (object.userID === $userInfo.sub) {
+                    remove(ref(database, `games/database/${gameID}/players/${key}`))
+                }
+            })
+        })
+    }
+
     function isOwner(ownerID) {
         return ownerID === $userInfo.sub;
     }
 
     function validateForm() {
-        const formValid = Object.values(myForm.summary()).every(item => item !== "");
+        const formValid = Object.values(myForm.summary()).every(item => item !== "") && $isAuthenticated;
         document.getElementById("addButton").disabled = !formValid;
         return formValid;
     }
 
 
 </script>
-<main style="background-image: url('background.jpg')">
+<main>
     <div class="quest-lists">
         <div class="quest-list">
             <div class="board-sign">Upcoming campaigns</div>
@@ -164,8 +175,11 @@
                                 <div class="game-master">Game master: {game.owner}</div>
                             </div>
                             <div class="quest-buttons">
-                                {#if $isAuthenticated && !isOwner(game.ownerID)}
+                                {#if $isAuthenticated && !isOwner(game.ownerID) && !game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
                                     <button on:click={_ => joinGame(game.gameID)}>Join</button>
+                                {/if}
+                                {#if $isAuthenticated && game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
+                                    <button on:click={_ => leaveGame(game.gameID)}>Leave</button>
                                 {/if}
                                 {#if $isAuthenticated && isOwner(game.ownerID)}
                                     <button on:click={_ => removeGame(game.gameID, 'upcoming')}>Remove</button>
@@ -195,8 +209,11 @@
                                 <div class="game-master">Game master: {game.owner}</div>
                             </div>
                             <div class="quest-buttons">
-                                {#if $isAuthenticated && !isOwner(game.ownerID)}
+                                {#if $isAuthenticated && !isOwner(game.ownerID) && !game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
                                     <button on:click={_ => joinGame(game.gameID)}>Join</button>
+                                {/if}
+                                {#if $isAuthenticated && game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
+                                    <button on:click={_ => leaveGame(game.gameID)}>Leave</button>
                                 {/if}
                                 {#if $isAuthenticated && isOwner(game.ownerID)}
                                     <button on:click={_ => removeGame(game.gameID, 'ongoing')}>Remove</button>
@@ -227,9 +244,9 @@
                             </div>
                             <div class="quest-buttons">
 <!--                                <button disabled >Join</button>-->
-<!--                                {#if $isAuthenticated && isOwner(game.ownerID)}-->
-<!--                                    <button on:click={_ => removeGame(game.gameID, 'completed')}>Remove</button>-->
-<!--                                {/if}-->
+                                {#if $isAuthenticated && isOwner(game.ownerID)}
+                                    <button on:click={_ => removeGame(game.gameID, 'completed')}>Remove</button>
+                                {/if}
                             </div>
                         </div>
                     {/each}
@@ -363,8 +380,6 @@
         flex-direction: row;
         align-items: flex-start;
         font-family: Garamond, Arial,serif;
-        background-size: cover;
-
     }
 
     .campaignForm {

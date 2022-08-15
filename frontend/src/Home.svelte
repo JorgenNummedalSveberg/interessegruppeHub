@@ -23,6 +23,10 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
             Object.keys(game[1]).forEach(x => {
                 this[x] = game[1][x];
             })
+
+            if (!this.players) {
+                this.players = [];
+            }
         }
 
     }

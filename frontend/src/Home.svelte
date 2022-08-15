@@ -23,10 +23,6 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
             Object.keys(game[1]).forEach(x => {
                 this[x] = game[1][x];
             })
-
-            if (!this.players) {
-                this.players = [];
-            }
         }
 
     }
@@ -179,10 +175,10 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                 <div class="game-master">Game master: {game.owner}</div>
                             </div>
                             <div class="quest-buttons">
-                                {#if $isAuthenticated && !isOwner(game.ownerID) && !game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
+                                {#if $isAuthenticated && !isOwner(game.ownerID) && (!game.players ||  (game.players && !game.players.includes({user: $userInfo.name, userID: $userInfo.sub})))}
                                     <button on:click={_ => joinGame(game.gameID)}>Join</button>
                                 {/if}
-                                {#if $isAuthenticated && game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
+                                {#if $isAuthenticated && game.players && game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
                                     <button on:click={_ => leaveGame(game.gameID)}>Leave</button>
                                 {/if}
                                 {#if $isAuthenticated && isOwner(game.ownerID)}
@@ -213,10 +209,10 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                 <div class="game-master">Game master: {game.owner}</div>
                             </div>
                             <div class="quest-buttons">
-                                {#if $isAuthenticated && !isOwner(game.ownerID) && !game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
+                                {#if $isAuthenticated && !isOwner(game.ownerID) && (!game.players ||  (game.players && !game.players.includes({user: $userInfo.name, userID: $userInfo.sub})))}
                                     <button on:click={_ => joinGame(game.gameID)}>Join</button>
                                 {/if}
-                                {#if $isAuthenticated && game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
+                                {#if $isAuthenticated && game.players && game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
                                     <button on:click={_ => leaveGame(game.gameID)}>Leave</button>
                                 {/if}
                                 {#if $isAuthenticated && isOwner(game.ownerID)}
@@ -247,7 +243,6 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                 <div class="game-master">Game master: {game.owner}</div>
                             </div>
                             <div class="quest-buttons">
-<!--                                <button disabled >Join</button>-->
                                 {#if $isAuthenticated && isOwner(game.ownerID)}
                                     <button on:click={_ => removeGame(game.gameID, 'completed')}>Remove</button>
                                 {/if}

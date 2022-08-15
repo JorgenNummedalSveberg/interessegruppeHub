@@ -21580,7 +21580,7 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Join";
     			attr_dev(button, "class", "svelte-1qlqp9w");
-    			add_location(button, file$5, 178, 36, 6830);
+    			add_location(button, file$5, 178, 36, 6840);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -21626,7 +21626,7 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Leave";
     			attr_dev(button, "class", "svelte-1qlqp9w");
-    			add_location(button, file$5, 181, 36, 7094);
+    			add_location(button, file$5, 181, 36, 7104);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -21681,9 +21681,9 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Start";
     			attr_dev(button0, "class", "svelte-1qlqp9w");
-    			add_location(button0, file$5, 184, 36, 7313);
+    			add_location(button0, file$5, 184, 36, 7323);
     			attr_dev(button1, "class", "svelte-1qlqp9w");
-    			add_location(button1, file$5, 185, 36, 7426);
+    			add_location(button1, file$5, 185, 36, 7436);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button0, anchor);
@@ -21748,11 +21748,7 @@ var app = (function () {
     	let t10;
     	let t11;
     	let div4;
-
-    	let t12_value = (/*game*/ ctx[48].players
-    	? /*game*/ ctx[48].players.join(', ')
-    	: '') + "";
-
+    	let t12_value = /*game*/ ctx[48].players.join(', ') + "";
     	let t12;
     	let t13;
     	let div6;
@@ -21826,22 +21822,22 @@ var app = (function () {
     			if (if_block2) if_block2.c();
     			t22 = space();
     			attr_dev(div0, "class", "title svelte-1qlqp9w");
-    			add_location(div0, file$5, 165, 28, 5871);
-    			add_location(div1, file$5, 167, 32, 5993);
-    			add_location(div2, file$5, 168, 32, 6061);
-    			add_location(div3, file$5, 170, 36, 6177);
-    			add_location(div4, file$5, 171, 36, 6262);
-    			add_location(div5, file$5, 169, 32, 6134);
+    			add_location(div0, file$5, 165, 28, 5901);
+    			add_location(div1, file$5, 167, 32, 6023);
+    			add_location(div2, file$5, 168, 32, 6091);
+    			add_location(div3, file$5, 170, 36, 6207);
+    			add_location(div4, file$5, 171, 36, 6292);
+    			add_location(div5, file$5, 169, 32, 6164);
     			attr_dev(div6, "class", "description");
-    			add_location(div6, file$5, 173, 32, 6392);
+    			add_location(div6, file$5, 173, 32, 6402);
     			attr_dev(div7, "class", "game-master svelte-1qlqp9w");
-    			add_location(div7, file$5, 174, 32, 6488);
+    			add_location(div7, file$5, 174, 32, 6498);
     			attr_dev(div8, "class", "content svelte-1qlqp9w");
-    			add_location(div8, file$5, 166, 28, 5938);
+    			add_location(div8, file$5, 166, 28, 5968);
     			attr_dev(div9, "class", "quest-buttons svelte-1qlqp9w");
-    			add_location(div9, file$5, 176, 28, 6610);
+    			add_location(div9, file$5, 176, 28, 6620);
     			attr_dev(div10, "class", "quest svelte-1qlqp9w");
-    			add_location(div10, file$5, 164, 24, 5822);
+    			add_location(div10, file$5, 164, 24, 5852);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div10, anchor);
@@ -21887,11 +21883,7 @@ var app = (function () {
     			if (dirty[0] & /*upcoming*/ 1 && t3_value !== (t3_value = /*game*/ ctx[48].ruleset + "")) set_data_dev(t3, t3_value);
     			if (dirty[0] & /*upcoming*/ 1 && t6_value !== (t6_value = /*game*/ ctx[48].language + "")) set_data_dev(t6, t6_value);
     			if (dirty[0] & /*upcoming*/ 1 && t9_value !== (t9_value = `(max ${/*game*/ ctx[48].maxPlayers})` + "")) set_data_dev(t9, t9_value);
-
-    			if (dirty[0] & /*upcoming*/ 1 && t12_value !== (t12_value = (/*game*/ ctx[48].players
-    			? /*game*/ ctx[48].players.join(', ')
-    			: '') + "")) set_data_dev(t12, t12_value);
-
+    			if (dirty[0] & /*upcoming*/ 1 && t12_value !== (t12_value = /*game*/ ctx[48].players.join(', ') + "")) set_data_dev(t12, t12_value);
     			if (dirty[0] & /*upcoming*/ 1 && t15_value !== (t15_value = /*game*/ ctx[48].description + "")) set_data_dev(t15, t15_value);
     			if (dirty[0] & /*upcoming*/ 1 && t18_value !== (t18_value = /*game*/ ctx[48].owner + "")) set_data_dev(t18, t18_value);
 
@@ -22048,7 +22040,7 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Join";
     			attr_dev(button, "class", "svelte-1qlqp9w");
-    			add_location(button, file$5, 212, 36, 8935);
+    			add_location(button, file$5, 212, 36, 8925);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -22094,7 +22086,7 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Leave";
     			attr_dev(button, "class", "svelte-1qlqp9w");
-    			add_location(button, file$5, 215, 36, 9199);
+    			add_location(button, file$5, 215, 36, 9189);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -22149,9 +22141,9 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "End";
     			attr_dev(button0, "class", "svelte-1qlqp9w");
-    			add_location(button0, file$5, 218, 36, 9418);
+    			add_location(button0, file$5, 218, 36, 9408);
     			attr_dev(button1, "class", "svelte-1qlqp9w");
-    			add_location(button1, file$5, 219, 36, 9530);
+    			add_location(button1, file$5, 219, 36, 9520);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button0, anchor);
@@ -22216,11 +22208,7 @@ var app = (function () {
     	let t10;
     	let t11;
     	let div4;
-
-    	let t12_value = (/*game*/ ctx[48].players
-    	? /*game*/ ctx[48].players.join(', ')
-    	: '') + "";
-
+    	let t12_value = /*game*/ ctx[48].players.join(', ') + "";
     	let t12;
     	let t13;
     	let div6;
@@ -22294,22 +22282,22 @@ var app = (function () {
     			if (if_block2) if_block2.c();
     			t22 = space();
     			attr_dev(div0, "class", "title svelte-1qlqp9w");
-    			add_location(div0, file$5, 199, 28, 7976);
-    			add_location(div1, file$5, 201, 32, 8098);
-    			add_location(div2, file$5, 202, 32, 8166);
-    			add_location(div3, file$5, 204, 36, 8282);
-    			add_location(div4, file$5, 205, 36, 8367);
-    			add_location(div5, file$5, 203, 32, 8239);
+    			add_location(div0, file$5, 199, 28, 7986);
+    			add_location(div1, file$5, 201, 32, 8108);
+    			add_location(div2, file$5, 202, 32, 8176);
+    			add_location(div3, file$5, 204, 36, 8292);
+    			add_location(div4, file$5, 205, 36, 8377);
+    			add_location(div5, file$5, 203, 32, 8249);
     			attr_dev(div6, "class", "description");
-    			add_location(div6, file$5, 207, 32, 8497);
+    			add_location(div6, file$5, 207, 32, 8487);
     			attr_dev(div7, "class", "game-master svelte-1qlqp9w");
-    			add_location(div7, file$5, 208, 32, 8593);
+    			add_location(div7, file$5, 208, 32, 8583);
     			attr_dev(div8, "class", "content svelte-1qlqp9w");
-    			add_location(div8, file$5, 200, 28, 8043);
+    			add_location(div8, file$5, 200, 28, 8053);
     			attr_dev(div9, "class", "quest-buttons svelte-1qlqp9w");
-    			add_location(div9, file$5, 210, 28, 8715);
+    			add_location(div9, file$5, 210, 28, 8705);
     			attr_dev(div10, "class", "quest svelte-1qlqp9w");
-    			add_location(div10, file$5, 198, 24, 7927);
+    			add_location(div10, file$5, 198, 24, 7937);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div10, anchor);
@@ -22355,11 +22343,7 @@ var app = (function () {
     			if (dirty[0] & /*ongoing*/ 2 && t3_value !== (t3_value = /*game*/ ctx[48].ruleset + "")) set_data_dev(t3, t3_value);
     			if (dirty[0] & /*ongoing*/ 2 && t6_value !== (t6_value = /*game*/ ctx[48].language + "")) set_data_dev(t6, t6_value);
     			if (dirty[0] & /*ongoing*/ 2 && t9_value !== (t9_value = `(max ${/*game*/ ctx[48].maxPlayers})` + "")) set_data_dev(t9, t9_value);
-
-    			if (dirty[0] & /*ongoing*/ 2 && t12_value !== (t12_value = (/*game*/ ctx[48].players
-    			? /*game*/ ctx[48].players.join(', ')
-    			: '') + "")) set_data_dev(t12, t12_value);
-
+    			if (dirty[0] & /*ongoing*/ 2 && t12_value !== (t12_value = /*game*/ ctx[48].players.join(', ') + "")) set_data_dev(t12, t12_value);
     			if (dirty[0] & /*ongoing*/ 2 && t15_value !== (t15_value = /*game*/ ctx[48].description + "")) set_data_dev(t15, t15_value);
     			if (dirty[0] & /*ongoing*/ 2 && t18_value !== (t18_value = /*game*/ ctx[48].owner + "")) set_data_dev(t18, t18_value);
 
@@ -22516,7 +22500,7 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Remove";
     			attr_dev(button, "class", "svelte-1qlqp9w");
-    			add_location(button, file$5, 247, 36, 11039);
+    			add_location(button, file$5, 247, 36, 11009);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -22573,11 +22557,7 @@ var app = (function () {
     	let t10;
     	let t11;
     	let div4;
-
-    	let t12_value = (/*game*/ ctx[48].players
-    	? /*game*/ ctx[48].players.join(', ')
-    	: '') + "";
-
+    	let t12_value = /*game*/ ctx[48].players.join(', ') + "";
     	let t12;
     	let t13;
     	let div6;
@@ -22631,22 +22611,22 @@ var app = (function () {
     			if (if_block) if_block.c();
     			t20 = space();
     			attr_dev(div0, "class", "title svelte-1qlqp9w");
-    			add_location(div0, file$5, 233, 28, 10082);
-    			add_location(div1, file$5, 235, 32, 10204);
-    			add_location(div2, file$5, 236, 32, 10277);
-    			add_location(div3, file$5, 238, 36, 10388);
-    			add_location(div4, file$5, 239, 36, 10473);
-    			add_location(div5, file$5, 237, 32, 10345);
+    			add_location(div0, file$5, 233, 28, 10072);
+    			add_location(div1, file$5, 235, 32, 10194);
+    			add_location(div2, file$5, 236, 32, 10267);
+    			add_location(div3, file$5, 238, 36, 10378);
+    			add_location(div4, file$5, 239, 36, 10463);
+    			add_location(div5, file$5, 237, 32, 10335);
     			attr_dev(div6, "class", "description");
-    			add_location(div6, file$5, 241, 32, 10603);
+    			add_location(div6, file$5, 241, 32, 10573);
     			attr_dev(div7, "class", "game-master svelte-1qlqp9w");
-    			add_location(div7, file$5, 242, 32, 10699);
+    			add_location(div7, file$5, 242, 32, 10669);
     			attr_dev(div8, "class", "content svelte-1qlqp9w");
-    			add_location(div8, file$5, 234, 28, 10149);
+    			add_location(div8, file$5, 234, 28, 10139);
     			attr_dev(div9, "class", "quest-buttons svelte-1qlqp9w");
-    			add_location(div9, file$5, 244, 28, 10821);
+    			add_location(div9, file$5, 244, 28, 10791);
     			attr_dev(div10, "class", "quest svelte-1qlqp9w");
-    			add_location(div10, file$5, 232, 24, 10033);
+    			add_location(div10, file$5, 232, 24, 10023);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div10, anchor);
@@ -22688,11 +22668,7 @@ var app = (function () {
     			if (dirty[0] & /*completed*/ 4 && t3_value !== (t3_value = /*game*/ ctx[48].language + "")) set_data_dev(t3, t3_value);
     			if (dirty[0] & /*completed*/ 4 && t6_value !== (t6_value = /*game*/ ctx[48].ruleset + "")) set_data_dev(t6, t6_value);
     			if (dirty[0] & /*completed*/ 4 && t9_value !== (t9_value = `(max ${/*game*/ ctx[48].maxPlayers})` + "")) set_data_dev(t9, t9_value);
-
-    			if (dirty[0] & /*completed*/ 4 && t12_value !== (t12_value = (/*game*/ ctx[48].players
-    			? /*game*/ ctx[48].players.join(', ')
-    			: '') + "")) set_data_dev(t12, t12_value);
-
+    			if (dirty[0] & /*completed*/ 4 && t12_value !== (t12_value = /*game*/ ctx[48].players.join(', ') + "")) set_data_dev(t12, t12_value);
     			if (dirty[0] & /*completed*/ 4 && t15_value !== (t15_value = /*game*/ ctx[48].description + "")) set_data_dev(t15, t15_value);
     			if (dirty[0] & /*completed*/ 4 && t18_value !== (t18_value = /*game*/ ctx[48].owner + "")) set_data_dev(t18, t18_value);
     			if (dirty[0] & /*$isAuthenticated, completed*/ 12) show_if = /*$isAuthenticated*/ ctx[3] && /*isOwner*/ ctx[22](/*game*/ ctx[48].ownerID);
@@ -22842,58 +22818,58 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Clear form";
     			attr_dev(div0, "class", "board-sign svelte-1qlqp9w");
-    			add_location(div0, file$5, 160, 12, 5622);
+    			add_location(div0, file$5, 160, 12, 5652);
     			attr_dev(div1, "class", "quests svelte-1qlqp9w");
-    			add_location(div1, file$5, 161, 12, 5684);
+    			add_location(div1, file$5, 161, 12, 5714);
     			attr_dev(div2, "class", "quest-list svelte-1qlqp9w");
-    			add_location(div2, file$5, 159, 8, 5584);
+    			add_location(div2, file$5, 159, 8, 5614);
     			attr_dev(div3, "class", "board-sign svelte-1qlqp9w");
-    			add_location(div3, file$5, 194, 12, 7730);
+    			add_location(div3, file$5, 194, 12, 7740);
     			attr_dev(div4, "class", "quests svelte-1qlqp9w");
-    			add_location(div4, file$5, 195, 12, 7791);
+    			add_location(div4, file$5, 195, 12, 7801);
     			attr_dev(div5, "class", "quest-list svelte-1qlqp9w");
-    			add_location(div5, file$5, 193, 8, 7692);
+    			add_location(div5, file$5, 193, 8, 7702);
     			attr_dev(div6, "class", "board-sign svelte-1qlqp9w");
-    			add_location(div6, file$5, 228, 12, 9830);
+    			add_location(div6, file$5, 228, 12, 9820);
     			attr_dev(div7, "class", "quests svelte-1qlqp9w");
-    			add_location(div7, file$5, 229, 12, 9893);
+    			add_location(div7, file$5, 229, 12, 9883);
     			attr_dev(div8, "class", "quest-list svelte-1qlqp9w");
-    			add_location(div8, file$5, 227, 8, 9792);
+    			add_location(div8, file$5, 227, 8, 9782);
     			attr_dev(div9, "class", "ongoing-quests");
-    			add_location(div9, file$5, 255, 8, 11320);
+    			add_location(div9, file$5, 255, 8, 11290);
     			attr_dev(div10, "class", "completed-quests");
-    			add_location(div10, file$5, 256, 8, 11364);
+    			add_location(div10, file$5, 256, 8, 11334);
     			attr_dev(div11, "class", "quest-lists svelte-1qlqp9w");
-    			add_location(div11, file$5, 158, 4, 5549);
-    			add_location(h1, file$5, 259, 8, 11483);
+    			add_location(div11, file$5, 158, 4, 5579);
+    			add_location(h1, file$5, 259, 8, 11453);
     			attr_dev(input0, "type", "text");
     			attr_dev(input0, "placeholder", "Best game ever");
-    			add_location(input0, file$5, 263, 12, 11569);
-    			add_location(label0, file$5, 261, 8, 11519);
+    			add_location(input0, file$5, 263, 12, 11539);
+    			add_location(label0, file$5, 261, 8, 11489);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "placeholder", "English");
-    			add_location(input1, file$5, 267, 12, 11734);
-    			add_location(label1, file$5, 265, 8, 11673);
+    			add_location(input1, file$5, 267, 12, 11704);
+    			add_location(label1, file$5, 265, 8, 11643);
     			attr_dev(input2, "type", "text");
     			attr_dev(input2, "placeholder", "Dungeons and Dragons");
-    			add_location(input2, file$5, 271, 12, 11885);
-    			add_location(label2, file$5, 269, 8, 11833);
+    			add_location(input2, file$5, 271, 12, 11855);
+    			add_location(label2, file$5, 269, 8, 11803);
     			attr_dev(input3, "type", "number");
-    			add_location(input3, file$5, 275, 12, 12054);
-    			add_location(label3, file$5, 273, 8, 11997);
+    			add_location(input3, file$5, 275, 12, 12024);
+    			add_location(label3, file$5, 273, 8, 11967);
     			attr_dev(textarea, "class", "descriptionBox svelte-1qlqp9w");
     			attr_dev(textarea, "placeholder", "This is meant to be a beginner-friendly campaign using the standard DnD rules, expansion books are ok");
-    			add_location(textarea, file$5, 279, 12, 12188);
-    			add_location(label4, file$5, 277, 8, 12136);
+    			add_location(textarea, file$5, 279, 12, 12158);
+    			add_location(label4, file$5, 277, 8, 12106);
     			button0.disabled = true;
     			attr_dev(button0, "id", "addButton");
-    			add_location(button0, file$5, 282, 12, 12427);
-    			add_location(button1, file$5, 283, 12, 12509);
-    			add_location(div12, file$5, 281, 8, 12408);
+    			add_location(button0, file$5, 282, 12, 12397);
+    			add_location(button1, file$5, 283, 12, 12479);
+    			add_location(div12, file$5, 281, 8, 12378);
     			attr_dev(section, "class", "campaignForm svelte-1qlqp9w");
-    			add_location(section, file$5, 258, 4, 11418);
+    			add_location(section, file$5, 258, 4, 11388);
     			attr_dev(main, "class", "svelte-1qlqp9w");
-    			add_location(main, file$5, 157, 0, 5537);
+    			add_location(main, file$5, 157, 0, 5567);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -23083,6 +23059,7 @@ var app = (function () {
     	class Game {
     		constructor(game) {
     			this.gameID = game[0];
+    			this.players = [];
 
     			Object.keys(game[1]).forEach(x => {
     				this[x] = game[1][x];
@@ -24127,7 +24104,7 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			img = element("img");
-    			attr_dev(img, "class", "logo svelte-18dkmtg");
+    			attr_dev(img, "class", "logo svelte-5deofv");
     			if (!src_url_equal(img.src, img_src_value = "logo.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "img not found");
     			add_location(img, file, 23, 17, 740);
@@ -24851,17 +24828,17 @@ var app = (function () {
     			create_component(route3.$$.fragment);
     			t8 = space();
     			create_component(route4.$$.fragment);
-    			attr_dev(div0, "class", "navItem svelte-18dkmtg");
+    			attr_dev(div0, "class", "navItem svelte-5deofv");
     			add_location(div0, file, 22, 3, 701);
-    			attr_dev(div1, "class", "navItem rightDivider svelte-18dkmtg");
+    			attr_dev(div1, "class", "navItem rightDivider svelte-5deofv");
     			add_location(div1, file, 25, 3, 815);
-    			attr_dev(div2, "class", "navItem rightDivider svelte-18dkmtg");
+    			attr_dev(div2, "class", "navItem rightDivider svelte-5deofv");
     			add_location(div2, file, 28, 3, 898);
-    			attr_dev(div3, "class", "navItem svelte-18dkmtg");
+    			attr_dev(div3, "class", "navItem svelte-5deofv");
     			add_location(div3, file, 31, 3, 1002);
-    			attr_dev(div4, "class", "navItem svelte-18dkmtg");
+    			attr_dev(div4, "class", "navItem svelte-5deofv");
     			add_location(div4, file, 34, 3, 1077);
-    			attr_dev(nav, "class", "navbar svelte-18dkmtg");
+    			attr_dev(nav, "class", "navbar svelte-5deofv");
     			add_location(nav, file, 21, 2, 677);
     		},
     		m: function mount(target, anchor) {
@@ -25040,7 +25017,7 @@ var app = (function () {
     		c: function create() {
     			main = element("main");
     			create_component(router.$$.fragment);
-    			attr_dev(main, "class", "svelte-18dkmtg");
+    			attr_dev(main, "class", "svelte-5deofv");
     			add_location(main, file, 19, 1, 658);
     		},
     		m: function mount(target, anchor) {

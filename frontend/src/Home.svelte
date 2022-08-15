@@ -17,9 +17,9 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
     };
 
     class Game {
-
         constructor(game) {
             this.gameID = game[0];
+            this.players = [];
             Object.keys(game[1]).forEach(x => {
                 this[x] = game[1][x];
             })
@@ -169,16 +169,16 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                 <div>Language(s): {game.language}</div>
                                 <div>
                                     <div>Players{`(max ${game.maxPlayers})`}:</div>
-                                    <div>{game.players ? game.players.join(', ') : ''}</div>
+                                    <div>{game.players.join(', ')}</div>
                                 </div>
                                 <div class="description">Description: {game.description}</div>
                                 <div class="game-master">Game master: {game.owner}</div>
                             </div>
                             <div class="quest-buttons">
-                                {#if $isAuthenticated && !isOwner(game.ownerID) && (!game.players ||  (game.players && !game.players.includes({user: $userInfo.name, userID: $userInfo.sub})))}
+                                {#if $isAuthenticated && !isOwner(game.ownerID) && !game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
                                     <button on:click={_ => joinGame(game.gameID)}>Join</button>
                                 {/if}
-                                {#if $isAuthenticated && game.players && game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
+                                {#if $isAuthenticated && game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
                                     <button on:click={_ => leaveGame(game.gameID)}>Leave</button>
                                 {/if}
                                 {#if $isAuthenticated && isOwner(game.ownerID)}
@@ -203,16 +203,16 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                 <div>Language(s): {game.language}</div>
                                 <div>
                                     <div>Players{`(max ${game.maxPlayers})`}:</div>
-                                    <div>{game.players ? game.players.join(', ') : ''}</div>
+                                    <div>{game.players.join(', ')}</div>
                                 </div>
                                 <div class="description">Description: {game.description}</div>
                                 <div class="game-master">Game master: {game.owner}</div>
                             </div>
                             <div class="quest-buttons">
-                                {#if $isAuthenticated && !isOwner(game.ownerID) && (!game.players ||  (game.players && !game.players.includes({user: $userInfo.name, userID: $userInfo.sub})))}
+                                {#if $isAuthenticated && !isOwner(game.ownerID) && !game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
                                     <button on:click={_ => joinGame(game.gameID)}>Join</button>
                                 {/if}
-                                {#if $isAuthenticated && game.players && game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
+                                {#if $isAuthenticated && game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
                                     <button on:click={_ => leaveGame(game.gameID)}>Leave</button>
                                 {/if}
                                 {#if $isAuthenticated && isOwner(game.ownerID)}
@@ -237,12 +237,13 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                 <div>Ruleset: {game.ruleset}</div>
                                 <div>
                                     <div>Players{`(max ${game.maxPlayers})`}:</div>
-                                    <div>{game.players ? game.players.join(', ') : ''}</div>
+                                    <div>{game.players.join(', ')}</div>
                                 </div>
                                 <div class="description">Description: {game.description}</div>
                                 <div class="game-master">Game master: {game.owner}</div>
                             </div>
                             <div class="quest-buttons">
+<!--                                <button disabled >Join</button>-->
                                 {#if $isAuthenticated && isOwner(game.ownerID)}
                                     <button on:click={_ => removeGame(game.gameID, 'completed')}>Remove</button>
                                 {/if}

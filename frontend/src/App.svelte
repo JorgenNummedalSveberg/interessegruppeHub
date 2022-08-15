@@ -69,8 +69,13 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		height: 3.5em;
-		background-color: #0d5474;
+		height: 60px;
+		width: 1000px;
+		/*background-color: #d9d9d9;*/
+		background-image: repeating-linear-gradient(90deg, #0d3454, #0d3454 3px, transparent 3px, transparent 120px,#0d3454 120px, #0d3454 123px, transparent 123px, transparent 917px, #0d3454 917px, #0d3454 920px, transparent 920px, transparent 1000px ),
+		repeating-linear-gradient(#0d5474, #0d5474 28px, #0d3454 28px, #0d3454 30px)
+		background-size: cover, cover;
+		background-position: 0 0, 0 0;
 	}
 	:global(a) {
 		color: #fff;
@@ -106,5 +111,6 @@
 		display: flex;
 		flex-direction: column;
 		text-decoration: none;
+		align-items: center;
 	}
 </style>

@@ -24853,17 +24853,17 @@ var app = (function () {
     			t3 = space();
     			div4 = element("div");
     			create_component(clickablemenu.$$.fragment);
-    			attr_dev(div0, "class", "navItem svelte-js1qep");
+    			attr_dev(div0, "class", "navItem svelte-1r0idpn");
     			add_location(div0, file, 26, 4, 893);
-    			attr_dev(div1, "class", "navItem rightDivider svelte-js1qep");
+    			attr_dev(div1, "class", "navItem rightDivider svelte-1r0idpn");
     			add_location(div1, file, 29, 4, 1010);
-    			attr_dev(div2, "class", "navItem rightDivider svelte-js1qep");
+    			attr_dev(div2, "class", "navItem rightDivider svelte-1r0idpn");
     			add_location(div2, file, 32, 4, 1096);
-    			attr_dev(div3, "class", "navItem svelte-js1qep");
+    			attr_dev(div3, "class", "navItem svelte-1r0idpn");
     			add_location(div3, file, 35, 4, 1203);
-    			attr_dev(div4, "class", "navItem svelte-js1qep");
+    			attr_dev(div4, "class", "navItem svelte-1r0idpn");
     			add_location(div4, file, 38, 4, 1281);
-    			attr_dev(nav, "class", "navbar svelte-js1qep");
+    			attr_dev(nav, "class", "navbar svelte-1r0idpn");
     			add_location(nav, file, 25, 3, 868);
     		},
     		m: function mount(target, anchor) {
@@ -24967,7 +24967,7 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			img = element("img");
-    			attr_dev(img, "class", "logo svelte-js1qep");
+    			attr_dev(img, "class", "logo svelte-1r0idpn");
     			if (!src_url_equal(img.src, img_src_value = "logo.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "img not found");
     			add_location(img, file, 27, 18, 933);
@@ -25825,7 +25825,7 @@ var app = (function () {
     		c: function create() {
     			main = element("main");
     			create_component(router.$$.fragment);
-    			attr_dev(main, "class", "svelte-js1qep");
+    			attr_dev(main, "class", "svelte-1r0idpn");
     			add_location(main, file, 22, 1, 822);
     		},
     		m: function mount(target, anchor) {

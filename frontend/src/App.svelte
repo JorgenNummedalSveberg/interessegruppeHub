@@ -78,7 +78,6 @@
 		flex-direction: row;
 		align-items: center;
 		height: 60px;
-		width: 1000px;
 		background-color: #0d5474;
 		border-radius: 0 0 20px 20px;
 	}

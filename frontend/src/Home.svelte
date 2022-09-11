@@ -283,6 +283,9 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
             <button disabled id="addButton" on:click={addGame}>Add game</button>
             <button on:click={() => myForm.reset()}>Clear form</button>
         </div>
+        {#if !$isAuthenticated}
+            <div class="formCover">You're not logged in</div>
+        {/if}
     </section>
 </main>
 
@@ -297,15 +300,13 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
     .quest-list {
         margin: 20px;
         padding: 20px;
-        width: 1300px;
         background-image: repeating-linear-gradient(90deg, transparent, transparent 100px, #bbb 100px, #bbb 125px, transparent 125px, transparent 1215px, #bbb 1215px, #bbb 1240px),
         repeating-linear-gradient(#A5805B, #A5805B 100px, #9D744E 100px, #9D744E 110px);
         background-attachment: local;
         background-size: 1300px;
         display: grid;
-        grid-template-rows: 120px minmax(500px, max-content);
+        grid-template-rows: 120px minmax(0, max-content);
         max-height: 620px;
-        overflow-x: auto;
         justify-content: center;
     }
 
@@ -314,6 +315,7 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         flex-direction: row;
         flex-wrap: wrap;
         width: 1080px;
+        overflow-y: auto;
     }
 
     .board-sign {
@@ -388,9 +390,45 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         background-color: #E9E3C3;
         padding: 1em;
         margin: 20px;
+        position: relative;
     }
     .descriptionBox {
         height: 10em;
         width: 20em;
+    }
+
+    @media only screen and (max-width: 768px) {
+        /* For mobile phones: */
+        main {
+            flex-direction: column;
+        }
+        .quest-list {
+            width: 80vw;
+            font-size: 10px;
+            background-size: 34vw;
+        }
+
+        .board-sign {
+            width: 80vw;
+        }
+
+        .quests {
+            width: 100%;
+            max-height: 500px;
+        }
+    }
+
+    .formCover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        font-weight: bold;
     }
 </style>

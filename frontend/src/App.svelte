@@ -7,7 +7,10 @@
 	import AboutUs from "./AboutUs.svelte";
 	import {isAuthenticated} from "@dopry/svelte-oidc";
 	import ClickableMenu from "./ClickableMenu.svelte";
+	import MobileHeader from "./MobileHeader.svelte";
 
+	let windowWidth = window.innerWidth;
+	window.addEventListener('resize', () => windowWidth = window.innerWidth);
 
 </script>
 
@@ -19,32 +22,37 @@
 >
 	<main>
 	<Router>
-		<nav class="navbar">
-			<div class="navItem">
-				<Link to="/"><img class="logo" src="logo.png" alt="img not found"/></Link>
-			</div>
-			<div class="navItem rightDivider">
-				<Link to="/">QUESTMATCH</Link>
-			</div>
-			<div class="navItem rightDivider">
-				<Link to="/borrowEquipment">BORROW EQUIPMENT</Link>
-			</div>
-			<div class="navItem">
-				<Link to="/aboutUs">ABOUT US</Link>
-			</div>
-			<div class="navItem">
-				<ClickableMenu height="150px" width="250px">
-					{#if $isAuthenticated}
-						<b>{$userInfo.name}</b>
-						<LogoutButton>Logout</LogoutButton>
-					{/if}
-					{#if !$isAuthenticated}
-						<b>You're not logged in</b>
-						<LoginButton>Login</LoginButton>
-					{/if}
-				</ClickableMenu>
-			</div>
-		</nav>
+		{#if windowWidth > 768}
+			<nav class="navbar">
+				<div class="navItem">
+					<Link to="/"><img class="logo" src="logo.png" alt="img not found"/></Link>
+				</div>
+				<div class="navItem rightDivider">
+					<Link to="/">QUESTMATCH</Link>
+				</div>
+				<div class="navItem rightDivider">
+					<Link to="/borrowEquipment">BORROW EQUIPMENT</Link>
+				</div>
+				<div class="navItem">
+					<Link to="/aboutUs">ABOUT US</Link>
+				</div>
+				<div class="navItem">
+					<ClickableMenu height="150px" width="250px">
+						{#if $isAuthenticated}
+							<b>{$userInfo.name}</b>
+							<LogoutButton>Logout</LogoutButton>
+						{/if}
+						{#if !$isAuthenticated}
+							<b>You're not logged in</b>
+							<LoginButton>Login</LoginButton>
+						{/if}
+					</ClickableMenu>
+				</div>
+			</nav>
+		{/if}
+		{#if windowWidth <= 768}
+			<MobileHeader/>
+		{/if}
 		<Route path="/">
 			<Home/>
 		</Route>
@@ -80,7 +88,6 @@
 	:global(a) {
 		color: #fff;
 		text-decoration: none;
-		font-family:  "Source Sans Pro", sans-serif;
 		font-size: 13px;
 		padding: 10px;
 		margin: 0 5px;

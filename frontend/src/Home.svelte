@@ -300,10 +300,10 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
     .quest-list {
         margin: 20px;
         padding: 20px;
-        background-image: repeating-linear-gradient(90deg, transparent, transparent 100px, #bbb 100px, #bbb 125px, transparent 125px, transparent 1215px, #bbb 1215px, #bbb 1240px),
+        background-image: repeating-linear-gradient(90deg, transparent, transparent 10%, #bbb 10%, #bbb 12%, transparent 12%, transparent 88%, #bbb 88%, #bbb 90%),
         repeating-linear-gradient(#A5805B, #A5805B 100px, #9D744E 100px, #9D744E 110px);
         background-attachment: local;
-        background-size: 1300px;
+        border: 1px #533 solid;
         display: grid;
         grid-template-rows: 120px minmax(0, max-content);
         max-height: 620px;
@@ -326,12 +326,12 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         justify-self: center;
         align-self: center;
         align-items: center;
-        width: 500px;
+        width: 600px;
+        border: 1px #533 solid;
+        border-radius: 5px;
         height: 100px;
-        background-image: repeating-linear-gradient(#A5805B, #A5805B 40px, #9D744E 40px, #9D744E 45px);
-        box-shadow: 1px 2px 2px 1px;
+        background-image: repeating-linear-gradient(#A5805B, #A5805B 45%, #9D744E 45%, #9D744E 50%);
         background-attachment: local;
-        background-size: 500px;
     }
     .quest {
         text-align: center;
@@ -381,7 +381,6 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         display: flex;
         flex-direction: row;
         align-items: flex-start;
-        font-family: Garamond, Arial,serif;
     }
 
     .campaignForm {
@@ -424,7 +423,7 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         left: 0;
         height: 100%;
         width: 100%;
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.7);
         display: flex;
         justify-content: center;
         align-items: center;

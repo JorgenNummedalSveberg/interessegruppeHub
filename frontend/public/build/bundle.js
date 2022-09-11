@@ -21557,7 +21557,7 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			button.textContent = "Join";
-    			attr_dev(button, "class", "svelte-mw72zu");
+    			attr_dev(button, "class", "svelte-14agkzy");
     			add_location(button, file$6, 178, 36, 6840);
     		},
     		m: function mount(target, anchor) {
@@ -21603,7 +21603,7 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			button.textContent = "Leave";
-    			attr_dev(button, "class", "svelte-mw72zu");
+    			attr_dev(button, "class", "svelte-14agkzy");
     			add_location(button, file$6, 181, 36, 7104);
     		},
     		m: function mount(target, anchor) {
@@ -21658,9 +21658,9 @@ var app = (function () {
     			t1 = space();
     			button1 = element("button");
     			button1.textContent = "Start";
-    			attr_dev(button0, "class", "svelte-mw72zu");
+    			attr_dev(button0, "class", "svelte-14agkzy");
     			add_location(button0, file$6, 184, 36, 7323);
-    			attr_dev(button1, "class", "svelte-mw72zu");
+    			attr_dev(button1, "class", "svelte-14agkzy");
     			add_location(button1, file$6, 185, 36, 7436);
     		},
     		m: function mount(target, anchor) {
@@ -21799,7 +21799,7 @@ var app = (function () {
     			t21 = space();
     			if (if_block2) if_block2.c();
     			t22 = space();
-    			attr_dev(div0, "class", "title svelte-mw72zu");
+    			attr_dev(div0, "class", "title svelte-14agkzy");
     			add_location(div0, file$6, 165, 28, 5901);
     			add_location(div1, file$6, 167, 32, 6023);
     			add_location(div2, file$6, 168, 32, 6091);
@@ -21808,13 +21808,13 @@ var app = (function () {
     			add_location(div5, file$6, 169, 32, 6164);
     			attr_dev(div6, "class", "description");
     			add_location(div6, file$6, 173, 32, 6402);
-    			attr_dev(div7, "class", "game-master svelte-mw72zu");
+    			attr_dev(div7, "class", "game-master svelte-14agkzy");
     			add_location(div7, file$6, 174, 32, 6498);
-    			attr_dev(div8, "class", "content svelte-mw72zu");
+    			attr_dev(div8, "class", "content svelte-14agkzy");
     			add_location(div8, file$6, 166, 28, 5968);
-    			attr_dev(div9, "class", "quest-buttons svelte-mw72zu");
+    			attr_dev(div9, "class", "quest-buttons svelte-14agkzy");
     			add_location(div9, file$6, 176, 28, 6620);
-    			attr_dev(div10, "class", "quest svelte-mw72zu");
+    			attr_dev(div10, "class", "quest svelte-14agkzy");
     			add_location(div10, file$6, 164, 24, 5852);
     		},
     		m: function mount(target, anchor) {
@@ -22017,7 +22017,7 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			button.textContent = "Join";
-    			attr_dev(button, "class", "svelte-mw72zu");
+    			attr_dev(button, "class", "svelte-14agkzy");
     			add_location(button, file$6, 212, 36, 8925);
     		},
     		m: function mount(target, anchor) {
@@ -22063,7 +22063,7 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			button.textContent = "Leave";
-    			attr_dev(button, "class", "svelte-mw72zu");
+    			attr_dev(button, "class", "svelte-14agkzy");
     			add_location(button, file$6, 215, 36, 9189);
     		},
     		m: function mount(target, anchor) {
@@ -22118,9 +22118,9 @@ var app = (function () {
     			t1 = space();
     			button1 = element("button");
     			button1.textContent = "End";
-    			attr_dev(button0, "class", "svelte-mw72zu");
+    			attr_dev(button0, "class", "svelte-14agkzy");
     			add_location(button0, file$6, 218, 36, 9408);
-    			attr_dev(button1, "class", "svelte-mw72zu");
+    			attr_dev(button1, "class", "svelte-14agkzy");
     			add_location(button1, file$6, 219, 36, 9520);
     		},
     		m: function mount(target, anchor) {
@@ -22259,7 +22259,7 @@ var app = (function () {
     			t21 = space();
     			if (if_block2) if_block2.c();
     			t22 = space();
-    			attr_dev(div0, "class", "title svelte-mw72zu");
+    			attr_dev(div0, "class", "title svelte-14agkzy");
     			add_location(div0, file$6, 199, 28, 7986);
     			add_location(div1, file$6, 201, 32, 8108);
     			add_location(div2, file$6, 202, 32, 8176);
@@ -22268,13 +22268,13 @@ var app = (function () {
     			add_location(div5, file$6, 203, 32, 8249);
     			attr_dev(div6, "class", "description");
     			add_location(div6, file$6, 207, 32, 8487);
-    			attr_dev(div7, "class", "game-master svelte-mw72zu");
+    			attr_dev(div7, "class", "game-master svelte-14agkzy");
     			add_location(div7, file$6, 208, 32, 8583);
-    			attr_dev(div8, "class", "content svelte-mw72zu");
+    			attr_dev(div8, "class", "content svelte-14agkzy");
     			add_location(div8, file$6, 200, 28, 8053);
-    			attr_dev(div9, "class", "quest-buttons svelte-mw72zu");
+    			attr_dev(div9, "class", "quest-buttons svelte-14agkzy");
     			add_location(div9, file$6, 210, 28, 8705);
-    			attr_dev(div10, "class", "quest svelte-mw72zu");
+    			attr_dev(div10, "class", "quest svelte-14agkzy");
     			add_location(div10, file$6, 198, 24, 7937);
     		},
     		m: function mount(target, anchor) {
@@ -22477,7 +22477,7 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			button.textContent = "Remove";
-    			attr_dev(button, "class", "svelte-mw72zu");
+    			attr_dev(button, "class", "svelte-14agkzy");
     			add_location(button, file$6, 247, 36, 11009);
     		},
     		m: function mount(target, anchor) {
@@ -22588,7 +22588,7 @@ var app = (function () {
     			div9 = element("div");
     			if (if_block) if_block.c();
     			t20 = space();
-    			attr_dev(div0, "class", "title svelte-mw72zu");
+    			attr_dev(div0, "class", "title svelte-14agkzy");
     			add_location(div0, file$6, 233, 28, 10072);
     			add_location(div1, file$6, 235, 32, 10194);
     			add_location(div2, file$6, 236, 32, 10267);
@@ -22597,13 +22597,13 @@ var app = (function () {
     			add_location(div5, file$6, 237, 32, 10335);
     			attr_dev(div6, "class", "description");
     			add_location(div6, file$6, 241, 32, 10573);
-    			attr_dev(div7, "class", "game-master svelte-mw72zu");
+    			attr_dev(div7, "class", "game-master svelte-14agkzy");
     			add_location(div7, file$6, 242, 32, 10669);
-    			attr_dev(div8, "class", "content svelte-mw72zu");
+    			attr_dev(div8, "class", "content svelte-14agkzy");
     			add_location(div8, file$6, 234, 28, 10139);
-    			attr_dev(div9, "class", "quest-buttons svelte-mw72zu");
+    			attr_dev(div9, "class", "quest-buttons svelte-14agkzy");
     			add_location(div9, file$6, 244, 28, 10791);
-    			attr_dev(div10, "class", "quest svelte-mw72zu");
+    			attr_dev(div10, "class", "quest svelte-14agkzy");
     			add_location(div10, file$6, 232, 24, 10023);
     		},
     		m: function mount(target, anchor) {
@@ -22689,7 +22689,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			div.textContent = "You're not logged in";
-    			attr_dev(div, "class", "formCover svelte-mw72zu");
+    			attr_dev(div, "class", "formCover svelte-14agkzy");
     			add_location(div, file$6, 286, 12, 12601);
     		},
     		m: function mount(target, anchor) {
@@ -22829,29 +22829,29 @@ var app = (function () {
     			button1.textContent = "Clear form";
     			t26 = space();
     			if (if_block3) if_block3.c();
-    			attr_dev(div0, "class", "board-sign svelte-mw72zu");
+    			attr_dev(div0, "class", "board-sign svelte-14agkzy");
     			add_location(div0, file$6, 160, 12, 5652);
-    			attr_dev(div1, "class", "quests svelte-mw72zu");
+    			attr_dev(div1, "class", "quests svelte-14agkzy");
     			add_location(div1, file$6, 161, 12, 5714);
-    			attr_dev(div2, "class", "quest-list svelte-mw72zu");
+    			attr_dev(div2, "class", "quest-list svelte-14agkzy");
     			add_location(div2, file$6, 159, 8, 5614);
-    			attr_dev(div3, "class", "board-sign svelte-mw72zu");
+    			attr_dev(div3, "class", "board-sign svelte-14agkzy");
     			add_location(div3, file$6, 194, 12, 7740);
-    			attr_dev(div4, "class", "quests svelte-mw72zu");
+    			attr_dev(div4, "class", "quests svelte-14agkzy");
     			add_location(div4, file$6, 195, 12, 7801);
-    			attr_dev(div5, "class", "quest-list svelte-mw72zu");
+    			attr_dev(div5, "class", "quest-list svelte-14agkzy");
     			add_location(div5, file$6, 193, 8, 7702);
-    			attr_dev(div6, "class", "board-sign svelte-mw72zu");
+    			attr_dev(div6, "class", "board-sign svelte-14agkzy");
     			add_location(div6, file$6, 228, 12, 9820);
-    			attr_dev(div7, "class", "quests svelte-mw72zu");
+    			attr_dev(div7, "class", "quests svelte-14agkzy");
     			add_location(div7, file$6, 229, 12, 9883);
-    			attr_dev(div8, "class", "quest-list svelte-mw72zu");
+    			attr_dev(div8, "class", "quest-list svelte-14agkzy");
     			add_location(div8, file$6, 227, 8, 9782);
     			attr_dev(div9, "class", "ongoing-quests");
     			add_location(div9, file$6, 255, 8, 11290);
     			attr_dev(div10, "class", "completed-quests");
     			add_location(div10, file$6, 256, 8, 11334);
-    			attr_dev(div11, "class", "quest-lists svelte-mw72zu");
+    			attr_dev(div11, "class", "quest-lists svelte-14agkzy");
     			add_location(div11, file$6, 158, 4, 5579);
     			add_location(h1, file$6, 259, 8, 11453);
     			attr_dev(input0, "type", "text");
@@ -22869,7 +22869,7 @@ var app = (function () {
     			attr_dev(input3, "type", "number");
     			add_location(input3, file$6, 275, 12, 12024);
     			add_location(label3, file$6, 273, 8, 11967);
-    			attr_dev(textarea, "class", "descriptionBox svelte-mw72zu");
+    			attr_dev(textarea, "class", "descriptionBox svelte-14agkzy");
     			attr_dev(textarea, "placeholder", "This is meant to be a beginner-friendly campaign using the standard DnD rules, expansion books are ok");
     			add_location(textarea, file$6, 279, 12, 12158);
     			add_location(label4, file$6, 277, 8, 12106);
@@ -22878,9 +22878,9 @@ var app = (function () {
     			add_location(button0, file$6, 282, 12, 12397);
     			add_location(button1, file$6, 283, 12, 12479);
     			add_location(div12, file$6, 281, 8, 12378);
-    			attr_dev(section, "class", "campaignForm svelte-mw72zu");
+    			attr_dev(section, "class", "campaignForm svelte-14agkzy");
     			add_location(section, file$6, 258, 4, 11388);
-    			attr_dev(main, "class", "svelte-mw72zu");
+    			attr_dev(main, "class", "svelte-14agkzy");
     			add_location(main, file$6, 157, 0, 5567);
     		},
     		l: function claim(nodes) {
@@ -24130,7 +24130,7 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			img = element("img");
-    			attr_dev(img, "class", "logo svelte-1nn5tip");
+    			attr_dev(img, "class", "logo svelte-aqyacv");
     			if (!src_url_equal(img.src, img_src_value = "logo.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "img not found");
     			add_location(img, file$1, 12, 17, 448);
@@ -24211,9 +24211,9 @@ var app = (function () {
     			if (if_block0) if_block0.c();
     			t3 = space();
     			if (if_block1) if_block1.c();
-    			attr_dev(div0, "class", "login svelte-1nn5tip");
+    			attr_dev(div0, "class", "login svelte-aqyacv");
     			add_location(div0, file$1, 20, 16, 838);
-    			attr_dev(div1, "class", "dropdown svelte-1nn5tip");
+    			attr_dev(div1, "class", "dropdown svelte-aqyacv");
     			add_location(div1, file$1, 16, 12, 628);
     		},
     		m: function mount(target, anchor) {
@@ -24624,9 +24624,9 @@ var app = (function () {
     			div = element("div");
     			t1 = text("=\r\n        ");
     			if (if_block) if_block.c();
-    			attr_dev(div, "class", "hamburger svelte-1nn5tip");
+    			attr_dev(div, "class", "hamburger svelte-aqyacv");
     			add_location(div, file$1, 13, 4, 515);
-    			attr_dev(nav, "class", "navbar svelte-1nn5tip");
+    			attr_dev(nav, "class", "navbar svelte-aqyacv");
     			add_location(nav, file$1, 11, 0, 409);
     		},
     		l: function claim(nodes) {
@@ -24853,17 +24853,17 @@ var app = (function () {
     			t3 = space();
     			div4 = element("div");
     			create_component(clickablemenu.$$.fragment);
-    			attr_dev(div0, "class", "navItem svelte-5deofv");
+    			attr_dev(div0, "class", "navItem svelte-js1qep");
     			add_location(div0, file, 26, 4, 893);
-    			attr_dev(div1, "class", "navItem rightDivider svelte-5deofv");
+    			attr_dev(div1, "class", "navItem rightDivider svelte-js1qep");
     			add_location(div1, file, 29, 4, 1010);
-    			attr_dev(div2, "class", "navItem rightDivider svelte-5deofv");
+    			attr_dev(div2, "class", "navItem rightDivider svelte-js1qep");
     			add_location(div2, file, 32, 4, 1096);
-    			attr_dev(div3, "class", "navItem svelte-5deofv");
+    			attr_dev(div3, "class", "navItem svelte-js1qep");
     			add_location(div3, file, 35, 4, 1203);
-    			attr_dev(div4, "class", "navItem svelte-5deofv");
+    			attr_dev(div4, "class", "navItem svelte-js1qep");
     			add_location(div4, file, 38, 4, 1281);
-    			attr_dev(nav, "class", "navbar svelte-5deofv");
+    			attr_dev(nav, "class", "navbar svelte-js1qep");
     			add_location(nav, file, 25, 3, 868);
     		},
     		m: function mount(target, anchor) {
@@ -24967,7 +24967,7 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			img = element("img");
-    			attr_dev(img, "class", "logo svelte-5deofv");
+    			attr_dev(img, "class", "logo svelte-js1qep");
     			if (!src_url_equal(img.src, img_src_value = "logo.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "img not found");
     			add_location(img, file, 27, 18, 933);
@@ -25825,7 +25825,7 @@ var app = (function () {
     		c: function create() {
     			main = element("main");
     			create_component(router.$$.fragment);
-    			attr_dev(main, "class", "svelte-5deofv");
+    			attr_dev(main, "class", "svelte-js1qep");
     			add_location(main, file, 22, 1, 822);
     		},
     		m: function mount(target, anchor) {

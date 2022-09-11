@@ -75,9 +75,5 @@
         display: flex;
         flex-direction: column;
     }
-    :global(a) {
-        color: black;
-        font-size: 20px;
-    }
 
 </style>

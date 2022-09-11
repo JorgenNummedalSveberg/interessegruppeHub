@@ -6,12 +6,15 @@
 	import BorrowEquipment from "./BorrowEquipment.svelte";
 	import AboutUs from "./AboutUs.svelte";
 	import {isAuthenticated} from "@dopry/svelte-oidc";
-	import ClickableMenu from "./ClickableMenu.svelte";
 	import MobileHeader from "./MobileHeader.svelte";
+	import Modal from "./Modal.svelte";
 
 	let windowWidth = window.innerWidth;
 	window.addEventListener('resize', () => windowWidth = window.innerWidth);
 
+
+	let loginModal;
+	let profileSection;
 </script>
 
 <OidcContext
@@ -36,19 +39,26 @@
 				<div class="navItem">
 					<Link to="/aboutUs">ABOUT US</Link>
 				</div>
-				<div class="navItem">
-					<ClickableMenu height="150px" width="250px">
-						{#if $isAuthenticated}
-							<b>{$userInfo.name}</b>
-							<LogoutButton>Logout</LogoutButton>
-						{/if}
-						{#if !$isAuthenticated}
-							<b>You're not logged in</b>
-							<LoginButton>Login</LoginButton>
-						{/if}
-					</ClickableMenu>
+				<div bind:this={profileSection} class="navItem" on:click={loginModal.showToggle}>
+					{#if $isAuthenticated}
+						<div class="log-in">
+							{$userInfo.name.toUpperCase()}
+						</div>
+					{/if}
+					{#if !$isAuthenticated}
+						<div class="log-in">
+							NOT LOGGED IN
+						</div>
+					{/if}
+					<img class="profileImage" src="profile-icon.png"  alt="img not found"/>
 				</div>
 			</nav>
+			<Modal bind:this={loginModal} offsetX={20} offsetY={10} parent="{profileSection}" position="below">
+				<div class="loginMenu">
+					<LoginButton>Login</LoginButton>
+					<LogoutButton>Logout</LogoutButton>
+				</div>
+			</Modal>
 		{/if}
 		{#if windowWidth <= 768}
 			<MobileHeader/>
@@ -73,6 +83,42 @@
 </OidcContext>
 
 <style>
+
+	.loginMenu {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		background-color: #0d5474;
+		border-radius: 20px;
+		margin: 10px;
+		overflow: hidden;
+	}
+	.loginMenu > :global(button) {
+		background-color: transparent;
+		border: none;
+		color: white;
+		margin: 0;
+		padding: 20px;
+	}
+	.loginMenu > :global(button):hover {
+		background-color: #F9B759;
+	}
+	.log-in {
+		font-size: 13px;
+		color: white;
+		padding: 20px;
+		cursor: pointer;
+	}
+
+	.profileImage {
+		max-height: 1.5em;
+		margin-top: var(--height-prop);
+		border-radius: 100px;
+		padding: 5px;
+	}
+
+	.profileImage:hover {
+		background-color: #F9B759;
+	}
 	.navbar {
 		display: flex;
 		flex-direction: row;
@@ -80,6 +126,7 @@
 		height: 60px;
 		background-color: #0d5474;
 		border-radius: 0 0 20px 20px;
+		overflow: hidden;
 	}
 	:global(a) {
 		color: #fff;
@@ -95,12 +142,17 @@
 	.navItem {
 		padding-left: 15px;
 		padding-right: 15px;
-		max-height: 100%;
 		text-align: center;
 		display: flex;
 		align-items: center;
 		font-size: 2em;
+		height: 100%;
 	}
+
+	.navItem:hover {
+		background-color: #F9B759;
+	}
+
 	.navItem > :global(button) {
 		height: 1px;
 	}

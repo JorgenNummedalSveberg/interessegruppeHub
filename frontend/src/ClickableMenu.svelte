@@ -52,11 +52,4 @@
         margin: 0.1em;
     }
 
-    .profileImage {
-        max-height: 1.5em;
-        margin-top: var(--height-prop);
-        /*display:block;*/
-        /*margin:auto;*/
-    }
-
 </style>

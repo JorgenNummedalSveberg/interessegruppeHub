@@ -39,8 +39,6 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
             let games = snapshot.val();
             upcoming = games ? Object.entries(games).map((key, object) => new Game(key, object))
                 .sort((a, b) => Date.parse(b.created) - Date.parse(a.created)) : [];
-            console.dir(games)
-            console.dir(upcoming)
         } else {
             upcoming = [];
             console.log("No upcoming games");
@@ -128,23 +126,31 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         })
     }
 
-    function joinGame(gameID) {
-        push(ref(database, `games/database/${gameID}/players/`), {user: $userInfo.name, userID: $userInfo.sub})
+    function joinGame(game, list) {
+        if (inGame(game)) return;
+        push(ref(database, `games/${list}/${game.gameID}/players/`), {user: $userInfo.name, userID: $userInfo.sub})
     }
 
-    function leaveGame(gameID) {
-        get(ref(database, `games/database/${gameID}/players/`)).then(res => {
-            let players = res.val();
-            Object.entries(players).forEach((key, object) => {
-                if (object.userID === $userInfo.sub) {
-                    remove(ref(database, `games/database/${gameID}/players/${key}`))
-                }
-            })
+    function leaveGame(game, list) {
+        if (!inGame(game)) return;
+        Object.entries(game.players).forEach(entry => {
+            if (entry[1].userID === $userInfo.sub) {
+                remove(ref(database, `games/${list}/${game.gameID}/players/${entry[0]}`))
+            }
         })
     }
 
     function isOwner(ownerID) {
         return ownerID === $userInfo.sub;
+    }
+    function inGame(game) {
+        let playerFound = false;
+        Object.values(game.players).forEach(player => {
+            if (player.userID === $userInfo.sub) {
+                playerFound = true;
+            }
+        })
+        return playerFound;
     }
 
     function validateForm() {
@@ -169,17 +175,17 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                 <div>Language(s): {game.language}</div>
                                 <div>
                                     <div>Players{`(max ${game.maxPlayers})`}:</div>
-                                    <div>{game.players.join(', ')}</div>
-                                </div>
+                                    <div>{Object.values(game.players).map(player => player.user).join(', ')}</div>
+                                </div><br>
                                 <div class="description">Description: {game.description}</div>
                                 <div class="game-master">Game master: {game.owner}</div>
                             </div>
                             <div class="quest-buttons">
-                                {#if $isAuthenticated && !isOwner(game.ownerID) && !game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
-                                    <button on:click={_ => joinGame(game.gameID)}>Join</button>
+                                {#if $isAuthenticated && !isOwner(game.ownerID) && !inGame(game)}
+                                    <button on:click={_ => joinGame(game, 'upcoming')}>Join</button>
                                 {/if}
-                                {#if $isAuthenticated && game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
-                                    <button on:click={_ => leaveGame(game.gameID)}>Leave</button>
+                                {#if $isAuthenticated && inGame(game)}
+                                    <button on:click={_ => leaveGame(game, 'upcoming')}>Leave</button>
                                 {/if}
                                 {#if $isAuthenticated && isOwner(game.ownerID)}
                                     <button on:click={_ => removeGame(game.gameID, 'upcoming')}>Remove</button>
@@ -203,17 +209,17 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                 <div>Language(s): {game.language}</div>
                                 <div>
                                     <div>Players{`(max ${game.maxPlayers})`}:</div>
-                                    <div>{game.players.join(', ')}</div>
-                                </div>
+                                    <div>{Object.values(game.players).map(player => player.user).join(', ')}</div>
+                                </div><br>
                                 <div class="description">Description: {game.description}</div>
                                 <div class="game-master">Game master: {game.owner}</div>
                             </div>
                             <div class="quest-buttons">
-                                {#if $isAuthenticated && !isOwner(game.ownerID) && !game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
-                                    <button on:click={_ => joinGame(game.gameID)}>Join</button>
+                                {#if $isAuthenticated && !isOwner(game.ownerID) && !inGame(game)}
+                                    <button on:click={_ => joinGame(game, 'ongoing')}>Join</button>
                                 {/if}
-                                {#if $isAuthenticated && game.players.includes({user: $userInfo.name, userID: $userInfo.sub})}
-                                    <button on:click={_ => leaveGame(game.gameID)}>Leave</button>
+                                {#if $isAuthenticated && inGame(game)}
+                                    <button on:click={_ => leaveGame(game, 'ongoing')}>Leave</button>
                                 {/if}
                                 {#if $isAuthenticated && isOwner(game.ownerID)}
                                     <button on:click={_ => removeGame(game.gameID, 'ongoing')}>Remove</button>
@@ -237,8 +243,8 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                                 <div>Ruleset: {game.ruleset}</div>
                                 <div>
                                     <div>Players{`(max ${game.maxPlayers})`}:</div>
-                                    <div>{game.players.join(', ')}</div>
-                                </div>
+                                    <div>{Object.values(game.players).map(player => player.user).join(', ')}</div>
+                                </div><br>
                                 <div class="description">Description: {game.description}</div>
                                 <div class="game-master">Game master: {game.owner}</div>
                             </div>

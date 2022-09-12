@@ -2,7 +2,6 @@
     import {Link} from "svelte-navigator";
     import {LoginButton, LogoutButton, userInfo} from '@dopry/svelte-oidc';
     import {isAuthenticated} from "@dopry/svelte-oidc";
-    import ClickableMenu from "./ClickableMenu.svelte";
 
     let windowWidth = window.innerWidth;
     window.addEventListener('resize', () => windowWidth = window.innerWidth);

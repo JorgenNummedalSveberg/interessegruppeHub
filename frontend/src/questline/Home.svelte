@@ -299,7 +299,6 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
     .quest-lists {
         display: flex;
         flex-direction: column;
-        width: 100%;
         align-items: center;
     }
 
@@ -311,17 +310,17 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         background-attachment: local;
         border: 1px #533 solid;
         display: grid;
-        grid-template-rows: 120px minmax(0, max-content);
+        grid-template-rows: 120px 500px;
         max-height: 620px;
         justify-content: center;
+        width: 80%;
     }
 
     .quests {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        width: 1080px;
         overflow-y: auto;
+        overflow-x: hidden;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
     .board-sign {
@@ -343,11 +342,10 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         text-align: center;
         padding: 10px;
         background-color: #E9E3C3;
-        width: 300px;
-        height: 400px;
+        width: 275px;
         margin: 20px;
         display: grid;
-        grid-template-rows: 50px 300px 50px;
+        grid-template-rows: 50px 275px 50px;
     }
 
     .content {
@@ -384,18 +382,19 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         margin-right: 5px;
     }
     main {
-        display: flex;
-        flex-direction: row;
+        display: grid;
         align-items: flex-start;
+        grid-template-columns: 3fr 1fr;
     }
 
     .campaignForm {
+        margin: 20px;
         display: flex;
         flex-direction: column;
         background-color: #E9E3C3;
         padding: 1em;
-        margin: 20px;
         position: relative;
+        width: 400px;
     }
     .descriptionBox {
         height: 10em;
@@ -436,4 +435,5 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         font-size: 30px;
         font-weight: bold;
     }
+
 </style>

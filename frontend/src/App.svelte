@@ -1,13 +1,12 @@
 <script>
 	import {Router, Route, Link} from "svelte-navigator";
-	import Home from './Home.svelte';
+	import Home from './questline/Home.svelte';
 	import {OidcContext, LoginButton, LogoutButton, userInfo} from '@dopry/svelte-oidc';
-	import Profile from "./Profile.svelte";
-	import BorrowEquipment from "./BorrowEquipment.svelte";
-	import AboutUs from "./AboutUs.svelte";
+	import BorrowEquipment from "./questline/BorrowEquipment.svelte";
+	import AboutUs from "./questline/AboutUs.svelte";
 	import {isAuthenticated} from "@dopry/svelte-oidc";
-	import MobileHeader from "./MobileHeader.svelte";
-	import Modal from "./Modal.svelte";
+	import MobileHeader from "./common/MobileHeader.svelte";
+	import Modal from "./common/Modal.svelte";
 
 	let windowWidth = window.innerWidth;
 	window.addEventListener('resize', () => windowWidth = window.innerWidth);
@@ -68,9 +67,6 @@
 		</Route>
 		<Route path="/login">
 			<Home/>
-		</Route>
-		<Route path="/profile">
-			<Profile/>
 		</Route>
 		<Route path="/borrowEquipment">
 			<BorrowEquipment/>
@@ -168,4 +164,5 @@
 		text-decoration: none;
 		align-items: center;
 	}
+
 </style>

@@ -1,9 +1,9 @@
 <script>
 	import {Router, Route, Link} from "svelte-navigator";
-	import Home from './questline/Home.svelte';
+	import Home from './questline/Home/Home.svelte';
 	import {OidcContext, LoginButton, LogoutButton, userInfo} from '@dopry/svelte-oidc';
-	import BorrowEquipment from "./questline/BorrowEquipment.svelte";
-	import AboutUs from "./questline/AboutUs.svelte";
+	import BorrowEquipment from "./questline/BorrowEquipment/BorrowEquipment.svelte";
+	import AboutUs from "./questline/AbourUs/AboutUs.svelte";
 	import {isAuthenticated} from "@dopry/svelte-oidc";
 	import MobileHeader from "./common/MobileHeader.svelte";
 	import Modal from "./common/Modal.svelte";

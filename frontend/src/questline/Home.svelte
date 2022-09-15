@@ -65,6 +65,9 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
             let games = snapshot.val();
             completed = games ? Object.entries(games).map((key, object) => new Game(key, object))
                 .sort((a, b) => Date.parse(b.ended) - Date.parse(a.ended)) : [];
+            arrow1 = questScroll(quests1)
+            arrow2 = questScroll(quests2)
+            arrow3 = questScroll(quests3)
         } else {
             completed = [];
             console.log("No completed games");
@@ -159,13 +162,24 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         return formValid;
     }
 
+    let quests1;
+    let arrow1;
+    let quests2;
+    let arrow2;
+    let quests3;
+    let arrow3;
+
+    function questScroll(scroll) {
+        return scroll.offsetHeight + scroll.scrollTop < scroll.scrollHeight;
+    }
+
 
 </script>
 <main>
     <div class="quest-lists">
         <div class="quest-list">
             <div class="board-sign">Upcoming campaigns</div>
-            <div class="quests">
+            <div bind:this={quests1} on:scroll={() => arrow1 = questScroll(quests1)} class="quests">
                 {#if upcoming !== undefined}
                     {#each upcoming as game}
                         <div class="quest">
@@ -196,10 +210,13 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                     {/each}
                 {/if}
             </div>
+            {#if arrow1}
+                <div class="downArrow">v</div>
+            {/if}
         </div>
         <div class="quest-list">
             <div class="board-sign">Ongoing campaigns</div>
-            <div class="quests">
+            <div bind:this={quests2} on:scroll={() => arrow2 = questScroll(quests2)} class="quests">
                 {#if ongoing !== undefined}
                     {#each ongoing as game}
                         <div class="quest">
@@ -230,10 +247,13 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                     {/each}
                 {/if}
             </div>
+            {#if arrow2}
+                <div class="downArrow">v</div>
+            {/if}
         </div>
         <div class="quest-list">
             <div class="board-sign">Completed campaigns</div>
-            <div class="quests">
+            <div bind:this={quests3} on:scroll={() => arrow3 = questScroll(quests3)} class="quests">
                 {#if completed !== undefined}
                     {#each completed as game}
                         <div class="quest">
@@ -258,6 +278,9 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
                     {/each}
                 {/if}
             </div>
+            {#if arrow3}
+                <div class="downArrow">v</div>
+            {/if}
         </div>
         <div class="ongoing-quests"></div>
         <div class="completed-quests"></div>
@@ -321,6 +344,19 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
         overflow-x: hidden;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
+        align-items: flex-start;
+        margin-bottom: 30px;
+        position: relative;
+    }
+
+    .downArrow {
+        position: relative;
+        bottom: 100px;
+        left: 100%;
+        font-size: 50px;
+        transform: scale(2, 1);
+        font-family: cursive;
+        color: #F9B759;
     }
 
     .board-sign {

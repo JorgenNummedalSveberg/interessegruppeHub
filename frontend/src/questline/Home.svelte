@@ -5,6 +5,7 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
     import { initializeApp } from "firebase/app";
     import { getAnalytics } from "firebase/analytics";
     import { getDatabase, ref, onValue, push, set, get, remove } from "firebase/database";
+import {PerformanceObserver as ResizeObserver} from "perf_hooks";
     const firebaseConfig = {
         apiKey: "AIzaSyAibYt3NYopvfkhgHoJnYqGwLW-WaUjkoo",
         authDomain: "questmatch-86f27.firebaseapp.com",
@@ -39,6 +40,7 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
             let games = snapshot.val();
             upcoming = games ? Object.entries(games).map((key, object) => new Game(key, object))
                 .sort((a, b) => Date.parse(b.created) - Date.parse(a.created)) : [];
+            setTimeout(() => arrow1 = questScroll(quests1), 100)
         } else {
             upcoming = [];
             console.log("No upcoming games");
@@ -52,6 +54,7 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
             let games = snapshot.val();
             ongoing = games ? Object.entries(games).map((key, object) => new Game(key, object))
                 .sort((a, b) => Date.parse(b.started) - Date.parse(a.started)) : [];
+            setTimeout(() => arrow2 = questScroll(quests2), 100)
         } else {
             ongoing = [];
             console.log("No ongoing games");
@@ -65,9 +68,7 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
             let games = snapshot.val();
             completed = games ? Object.entries(games).map((key, object) => new Game(key, object))
                 .sort((a, b) => Date.parse(b.ended) - Date.parse(a.ended)) : [];
-            arrow1 = questScroll(quests1)
-            arrow2 = questScroll(quests2)
-            arrow3 = questScroll(quests3)
+            setTimeout(() => arrow3 = questScroll(quests3), 100)
         } else {
             completed = [];
             console.log("No completed games");
@@ -169,7 +170,7 @@ import {isAuthenticated, userInfo} from '@dopry/svelte-oidc';
     let quests3;
     let arrow3;
 
-    function questScroll(scroll) {
+function questScroll(scroll) {
         return scroll.offsetHeight + scroll.scrollTop < scroll.scrollHeight;
     }
 

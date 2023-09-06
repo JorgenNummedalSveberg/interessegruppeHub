@@ -34,6 +34,7 @@
         flex-direction:column;
         align-items: center;
         color: white;
+        max-width: 90vw;
     }
     .navbar {
         display: flex;

@@ -57,10 +57,11 @@
         position: relative;
     }
     .dropdown {
+        z-index: 10;
         position: absolute;
         display: flex;
         flex-direction: column;
-        background-color: white;
+        background-color: #0d5474;
         color: black;
         right: 0;
         top: 50px;

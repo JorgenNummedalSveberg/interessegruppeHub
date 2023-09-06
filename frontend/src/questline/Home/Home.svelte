@@ -21,14 +21,22 @@
     const analytics = getAnalytics(app);
     const database = getDatabase();
 
+	let windowWidth = window.innerWidth;
+	window.addEventListener('resize', () => windowWidth = window.innerWidth);
+    
 </script>
 <main>
     <div class="quest-lists">
+        {#if windowWidth <= 768}
+        <CampaignForm app={app} analytics={analytics} database={database}/>
+        {/if}
         <QuestBoard path="upcoming" app={app} analytics={analytics} database={database}/>
         <QuestBoard path="ongoing" app={app} analytics={analytics} database={database}/>
         <QuestBoard path="completed" app={app} analytics={analytics} database={database}/>
     </div>
+    {#if windowWidth > 768}
     <CampaignForm app={app} analytics={analytics} database={database}/>
+    {/if}
 </main>
 
 <style>

@@ -175,6 +175,23 @@
         margin-bottom: 30px;
         position: relative;
     }
+    /* Media query for screens smaller than 600px, for example */
+    @media (max-width: 600px) {
+        .quests {
+            grid-template-columns: 1fr;
+        }
+        .quest {
+            max-width: 70%;
+        }
+        .board-sign {
+            font-size: 2.5em !important;
+        }
+        .quest-list {
+            max-width: 80vw;
+            background-image: repeating-linear-gradient(90deg, transparent, transparent 40%, #bbb 40%, #bbb 48%, transparent 48%, transparent 352%, #bbb 352%, #bbb 360%),
+        repeating-linear-gradient(#A5805B, #A5805B 33%, #9D744E 66%, #9D744E 100%);
+        }
+    }
 
     .downArrow {
         position: relative;
@@ -182,7 +199,7 @@
         left: 100%;
         font-size: 50px;
         transform: scale(2, 1);
-        font-family: cursive;
+        font-family:Arial, Helvetica, sans-serif;
         color: #F9B759;
     }
 

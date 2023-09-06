@@ -73,7 +73,16 @@
         background-color: #E9E3C3;
         padding: 1em;
         position: relative;
-        width: 400px;
+        width: 90vw; /* Full width for smaller screens */
+        max-width: 400px; /* Will be 400px on larger screens, but adjust for smaller */
+    }
+    
+    /* Media query for screens smaller than 600px, for example */
+    @media (max-width: 600px) {
+        .campaignForm {
+            margin: 10px; /* Less margin for smaller screens */
+            padding: 0.5em; /* Less padding as well */
+        }
     }
     .descriptionBox {
         height: 10em;

@@ -170,7 +170,7 @@
         overflow-y: auto;
         overflow-x: hidden;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         align-items: flex-start;
         margin-bottom: 30px;
         position: relative;
